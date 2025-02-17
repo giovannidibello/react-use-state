@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 // importo componenti bootstrap
 import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
 // array linguaggi
 const languages = [
@@ -38,16 +39,32 @@ const languages = [
 ];
 
 function App() {
-  // const [count, setCount] = useState(0)
+
+  const [selectedLanguage, setSelectedLanguage] = useState(1)
 
   return (
     <>
       <main>
         <h1>Learn Web Development</h1>
 
-        <div className="d-flex justify-content-center mt-5">
-          {languages.map(language => <Button key={language.id} variant="primary" className="me-4">{language.title} </Button>)}
+        <div className="ms-5 mt-5">
+
+          {languages.map(language =>
+            <Button onClick={() => setSelectedLanguage(language.id)} key={language.id} variant={language.id === selectedLanguage ? "warning" : "primary"} className="me-4">{language.title}
+            </Button>)}
+
+          <Card className="mt-5 me-5">
+            <Card.Body>
+              <Card.Title>
+                {languages.find(language => language.id === selectedLanguage)?.title}
+              </Card.Title>
+              <Card.Text>
+                {languages.find(language => language.id === selectedLanguage)?.description}
+              </Card.Text>
+            </Card.Body>
+          </Card>
         </div>
+
 
       </main>
     </>
