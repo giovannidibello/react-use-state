@@ -40,7 +40,7 @@ const languages = [
 
 function App() {
 
-  const [selectedLanguage, setSelectedLanguage] = useState(1)
+  const [selectedLanguage, setSelectedLanguage] = useState(null)
 
   return (
     <>
@@ -59,7 +59,7 @@ function App() {
                 {languages.find(language => language.id === selectedLanguage)?.title}
               </Card.Title>
               <Card.Text>
-                {languages.find(language => language.id === selectedLanguage)?.description}
+                {selectedLanguage ? languages.find(language => language.id === selectedLanguage)?.description : "Nessun linguaggio selezionato"}
               </Card.Text>
             </Card.Body>
           </Card>
